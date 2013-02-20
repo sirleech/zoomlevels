@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet Quick Start Guide Example</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+<link rel="stylesheet" href="http://kartena.github.com/Leaflet.Pancontrol/lib/Leaflet.Pancontrol/src/L.Control.Pan.css" />
+<link rel="stylesheet" href="http://kartena.github.com/Leaflet.zoomslider/lib/Leaflet.zoomslider/src/L.Control.Zoomslider.css" />
+ <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
+        <link rel="stylesheet" href="http://kartena.github.com/Leaflet.Pancontrol/lib/Leaflet.Pancontrol/src/L.Control.Pan.ie.css" />
+        <link rel="stylesheet" href="http://kartena.github.com/Leaflet.zoomslider/lib/Leaflet.zoomslider/src/L.Control.Zoomslider.ie.css" />
+ <![endif]-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+<script src="http://kartena.github.com/Leaflet.Pancontrol/lib/Leaflet.Pancontrol/src/L.Control.Pan.js"></script>
+<script src="http://kartena.github.com/Leaflet.zoomslider/lib/Leaflet.zoomslider/src/L.Control.Zoomslider.js"></script>
+<style>
+	.zoom{ font-weight:bold; 
+		font-size:18px; 
+		background:white;
+		padding:8px; 
+		position: relative; top: -700px; left:800px; border: 2px solid black; width: 200px; }
+</style>
+</head>
+<body>
+	<div id="map" style="width: 1200px; height: 800px"></div>
+	<div class="zoom">Zoom Level: <div id="zoomLevel"></div></div>
+	<script>
+
+		var map = L.map('map').setView([51.505, -0.09], 13);
+
+		L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+		}).addTo(map);
+
+
+		L.control.scale({imperial:false}).addTo(map);
+			
+		function updateZoomLabel() {
+			$('#zoomLevel').text(map.getZoom());
+		}
+
+		map.on('zoomend', updateZoomLabel);
+		updateZoomLabel();
+	</script>
+</body>
+</html>
+
